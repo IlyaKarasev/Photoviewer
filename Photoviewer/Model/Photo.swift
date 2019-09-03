@@ -8,15 +8,17 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-class Photo {
+@objcMembers
+class Photo: Object {
     
-    var id: Int = 0
-    var previewImage: String = ""
-    var largeImage: String = ""
-    var likes: Int = 0
-    var comments: Int = 0
-    var views: Int = 0
+    dynamic var id: Int = 0
+    dynamic var previewImage: String = ""
+    dynamic var largeImage: String = ""
+    dynamic var likes: Int = 0
+    dynamic var comments: Int = 0
+    dynamic var views: Int = 0
     
     convenience init(_ json: JSON) {
         self.init()
@@ -27,6 +29,10 @@ class Photo {
         self.likes = json["likes"].intValue
         self.comments = json["comments"].intValue
         self.views = json["views"].intValue
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
     
 }
