@@ -39,6 +39,7 @@ class PhotosController: UICollectionViewController {
     // MARK: customizing of collection view
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         let width = collectionView.bounds.width / 2.05
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -76,5 +77,4 @@ class PhotosController: UICollectionViewController {
             showPhotoVC.currentImage = largePhoto
         }
     }
-    
 }
