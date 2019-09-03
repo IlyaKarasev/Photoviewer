@@ -8,6 +8,7 @@ target 'Photoviewer' do
 pod 'Alamofire', '~> 4.8.2'
 pod 'SwiftyJSON', '~> 5.0.0'
 pod 'Kingfisher', '~> 5.5.0'
+pod 'RealmSwift', '~> 3.16.1'
 
   # Pods for Photoviewer
 
