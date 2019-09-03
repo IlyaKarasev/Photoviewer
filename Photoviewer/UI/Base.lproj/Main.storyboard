@@ -27,8 +27,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="iSD-7K-Awt" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Yd5-4I-scT" secondAttribute="bottom" constant="5" id="0k9-KA-gc0"/>
                             <constraint firstItem="Yd5-4I-scT" firstAttribute="centerX" secondItem="SKP-4Z-ocN" secondAttribute="centerX" id="Qjb-BT-HDE"/>
                             <constraint firstItem="Yd5-4I-scT" firstAttribute="centerY" secondItem="SKP-4Z-ocN" secondAttribute="centerY" id="USW-Q7-Fln"/>
+                            <constraint firstItem="Yd5-4I-scT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iSD-7K-Awt" secondAttribute="top" constant="5" id="ZO0-pg-0fb"/>
                             <constraint firstItem="iSD-7K-Awt" firstAttribute="trailing" secondItem="Yd5-4I-scT" secondAttribute="trailing" id="Zni-4x-GZe"/>
                             <constraint firstItem="Yd5-4I-scT" firstAttribute="leading" secondItem="iSD-7K-Awt" secondAttribute="leading" id="dg5-bu-GjE"/>
                         </constraints>
