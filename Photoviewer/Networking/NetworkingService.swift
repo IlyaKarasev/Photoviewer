@@ -27,10 +27,10 @@ class NetworkingService {
     public func loadPhotos(completion: ((Swift.Result<[Photo], Error>) -> Void)? = nil) {
         
         let params: Parameters = [
-            "key": "13492509-7b57a726ec6e2283a03a51022",
-            "image_type": "photo",
-            "order": "popular",
-            "per_page": "200"
+            "key": "13492509-7b57a726ec6e2283a03a51022",    
+            "image_type": "photo",                          // тип изображений только фото
+            "order": "popular",                             // запрашиваем фото мз раздела "популярные"
+            "per_page": "200"                               // количество фото
         ]
         
         NetworkingService.session.request(baseUrl, method: .get, parameters: params).responseJSON { response in
