@@ -8,15 +8,18 @@
 
 import UIKit
 
-class ShowPhotoController: UIViewController {
+class ShowPhotoController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var largePhotoView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var currentImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.scrollView.maximumZoomScale = 5
+        self.scrollView.minimumZoomScale = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,4 +28,7 @@ class ShowPhotoController: UIViewController {
         self.largePhotoView.image = currentImage
     }
 
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return largePhotoView.self
+    }
 }
