@@ -12,8 +12,8 @@ import RealmSwift
 class PhotosController: UICollectionViewController {
 
     private let photoService = NetworkingService()
-    private lazy var photos: Results<Photo> = try! Realm().objects(Photo.self)
-    //var photos = [Photo]()
+    
+    var photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +28,15 @@ class PhotosController: UICollectionViewController {
             guard let self = self else { return }
             switch result {
             case .success(let photos):
-                //self.photos = photos
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.add(photos, update: .modified)
-                }
-                print(realm.configuration.fileURL!)
+                self.photos = photos
                 self.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
+    
+    // MARK: customizing of collection view
     
     override func viewDidLayoutSubviews() {
         
@@ -50,10 +47,10 @@ class PhotosController: UICollectionViewController {
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
     }
-    
+
     
     // MARK: UICollectionViewDataSource
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return photos.count
@@ -69,6 +66,7 @@ class PhotosController: UICollectionViewController {
         return cell
     }
     
+    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPhoto",
             let showPhotoVC = segue.destination as? ShowPhotoController {

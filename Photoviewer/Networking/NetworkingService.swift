@@ -23,7 +23,7 @@ class NetworkingService {
         return session
     }()
     
-    // Получение фотографий
+    // Получение фотографий:
     public func loadPhotos(completion: ((Swift.Result<[Photo], Error>) -> Void)? = nil) {
         
         let params: Parameters = [

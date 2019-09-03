@@ -13,12 +13,12 @@ import RealmSwift
 @objcMembers
 class Photo: Object {
     
-    dynamic var id: Int = 0
-    dynamic var previewImage: String = ""
-    dynamic var largeImage: String = ""
-    dynamic var likes: Int = 0
-    dynamic var comments: Int = 0
-    dynamic var views: Int = 0
+    dynamic var id: Int = 0                 // id фотографии
+    dynamic var previewImage: String = ""   // изображение небольшого размера для показа на экране с collection view
+    dynamic var largeImage: String = ""     // изображение большого размера для показа на экране
+    dynamic var likes: Int = 0              // кол-во лайков
+    dynamic var comments: Int = 0           // кол-во комментариев
+    dynamic var views: Int = 0              // количество просмотров
     
     convenience init(_ json: JSON) {
         self.init()
