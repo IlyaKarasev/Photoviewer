@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import RealmSwift
 
 class PhotosController: UICollectionViewController {
 
-    private let photoService = NetworkingService()
+    private let getphotoService = NetworkingService()
     
     var photos = [Photo]()
     
@@ -24,7 +23,7 @@ class PhotosController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        photoService.loadPhotos() { [weak self] result in
+        getphotoService.loadPhotos() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let photos):
