@@ -1,5 +1,5 @@
 //
-//  CashPhotoService.swift
+//  CachePhotoService.swift
 //  Photoviewer
 //
 //  Created by ILYA Karasev on 05/09/2019.
@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class СachePhotoService {
     
@@ -70,10 +71,21 @@ class СachePhotoService {
     
     // Cловарь в котором будут храниться загруженные и извлеченные из файловой системы изображения (кэш в оператиной памяти):
     private var images = [String: UIImage]()
-    
-    // Метод загрузки фото из сети:
-    private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String) {
+
         
+    // Получение фотографий:
+    private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String) {
+        Alamofire.request(url).responseData(queue: DispatchQueue.global()) { [weak self] response in
+            guard
+                let data = response.data,
+                let image = UIImage(data: data) else { return }
+            
+            self?.images[url] = image
+            self?.saveImageToCache(url: url, image: image)
+            DispatchQueue.main.async {
+                self?.container.reloadRow(atIndexpath: indexPath)
+            }
+        }
     }
 
     // Метод, который предоставляет изображение по url (сначала ищем кэше оперативной памяти, потом в файловой системе, если нигде нет - загружаем из сети):

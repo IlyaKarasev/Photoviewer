@@ -21,21 +21,4 @@ class PhotoCell: UICollectionViewCell {
     
     var largeImageView = UIImageView()
     
-    public func configure(with photo: Photo) {
-        
-        let photoUrlString = photo.previewImage
-        photoView.kf.setImage(with: URL(string: photoUrlString))
-        
-        let largePhotoUrlString = photo.largeImage
-        largeImageView.kf.setImage(with: URL(string: largePhotoUrlString))
-        
-        let likes = photo.likes
-        likesLabel.text = String(likes)
-        
-        let comments = photo.comments
-        commentsLabel.text = String(comments)
-        
-        let views = photo.views
-        viewsLabel.text = String(views)
-    }
 }

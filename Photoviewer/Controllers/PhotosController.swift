@@ -10,7 +10,8 @@ import UIKit
 
 class PhotosController: UICollectionViewController {
 
-    private let getphotoService = NetworkingService()
+    private let getPhotoService = NetworkingService()
+    var photoService: СachePhotoService?
     
     var photos = [Photo]()
     
@@ -23,7 +24,7 @@ class PhotosController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getphotoService.loadPhotos() { [weak self] result in
+        getPhotoService.loadPhotos() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let photos):
@@ -61,7 +62,21 @@ class PhotosController: UICollectionViewController {
             else { fatalError() }
     
         let photo = photos[indexPath.row]
-        cell.configure(with: photo)
+        
+        cell.photoView.image = photoService?.photo(atIndexpath: indexPath, byUrl: photo.previewImage)
+        cell.photoView.kf.setImage(with: URL(string: photo.previewImage))
+        
+        cell.largeImageView.image = photoService?.photo(atIndexpath: indexPath, byUrl: photo.largeImage)
+        cell.largeImageView.kf.setImage(with: URL(string: photo.largeImage))
+        
+        let likes = photo.likes
+        cell.likesLabel.text = String(likes)
+        
+        let comments = photo.comments
+        cell.commentsLabel.text = String(comments)
+        
+        let views = photo.views
+        cell.viewsLabel.text = String(views)
     
         return cell
     }
@@ -70,7 +85,7 @@ class PhotosController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPhoto",
             let showPhotoVC = segue.destination as? ShowPhotoController {
-            
+
             let cell = sender as! PhotoCell
             let largePhoto = cell.largeImageView.image
             showPhotoVC.currentImage = largePhoto
