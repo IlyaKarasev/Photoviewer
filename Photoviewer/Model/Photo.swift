@@ -18,9 +18,6 @@ class Photo {
     var likes: Int = 0              // кол-во лайков
     var comments: Int = 0           // кол-во комментариев
     var views: Int = 0              // количество просмотров
-    var url: String {
-        return previewImage
-    }
     
     convenience init(_ json: JSON) {
         self.init()
