@@ -64,10 +64,10 @@ class PhotosController: UICollectionViewController {
         let photo = photos[indexPath.row]
         
         cell.photoView.image = photoService?.photo(atIndexpath: indexPath, byUrl: photo.previewImage)
-        //cell.photoView.kf.setImage(with: URL(string: photo.previewImage))
+        cell.photoView.kf.setImage(with: URL(string: photo.previewImage))
         
         cell.largeImageView.image = photoService?.photo(atIndexpath: indexPath, byUrl: photo.largeImage)
-        //cell.largeImageView.kf.setImage(with: URL(string: photo.largeImage))
+        cell.largeImageView.kf.setImage(with: URL(string: photo.largeImage))
         
         let likes = photo.likes
         cell.likesLabel.text = String(likes)
